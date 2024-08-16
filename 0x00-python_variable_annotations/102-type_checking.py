@@ -4,7 +4,8 @@ from typing import Tuple, List
 
  
 def zoom_array(lst: Tuple, factor: int = 2) -> List:
-    """return zoomed_in"""
+    """fix error: Incompatible types in assignment
+    (expression has type "List[Any]", variable has type "Tuple[Any, ...]")"""
     zoomed_in: List = [
         item for item in lst
         for i in range(factor)
