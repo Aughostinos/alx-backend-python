@@ -3,7 +3,7 @@
 from typing import Tuple, List
 
  
-def zoom_array(lst: Tuple[int], factor: int = 2) -> List[int]:
+def zoom_array(lst: Tuple[int, ...], factor: int = 2) -> List[int]:
     """fix error: Incompatible types in assignment
     (expression has type "List[Any]", variable has type "Tuple[Any, ...]")"""
     zoomed_in: List[int] = [
