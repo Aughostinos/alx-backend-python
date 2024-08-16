@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Task 12. Type Checking"""
-from typing import Tuple
+from typing import Tuple, List
 
  
-def zoom_array(lst: Tuple, factor: int = 2) -> Tuple:
+def zoom_array(lst: Tuple, factor: int = 2) -> List:
     """return zoomed_in"""
-    zoomed_in: Tuple = [
+    zoomed_in: List = [
         item for item in lst
         for i in range(factor)
     ]
