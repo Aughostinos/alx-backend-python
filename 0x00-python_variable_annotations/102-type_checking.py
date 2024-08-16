@@ -2,7 +2,7 @@
 """Task 12. Type Checking"""
 from typing import Tuple, List
 
- 
+
 def zoom_array(lst: Tuple, factor: int = 2) -> List:
     """fix error: Incompatible types in assignment
     (expression has type "List[Any]", variable has type "Tuple[Any, ...]")"""
