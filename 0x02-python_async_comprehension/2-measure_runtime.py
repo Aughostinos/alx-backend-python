@@ -13,5 +13,5 @@ async def measure_runtime() -> float:
     start_time = time.monotonic()
     await asyncio.gather(*(async_comprehension() for _ in range(4)))
     total_runtime = time.monotonic() - start_time
-    
+
     return total_runtime
