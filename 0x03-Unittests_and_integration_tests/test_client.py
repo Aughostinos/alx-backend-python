@@ -7,7 +7,7 @@ from unittest.mock import patch
 from parameterized import parameterized
 from parameterized import parameterized_class
 from client import GithubOrgClient
-from fixtures import TEST_PAYLOAD 
+from fixtures import TEST_PAYLOAD
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -124,7 +124,6 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         """Test public_repos method"""
         client = GithubOrgClient("google")
         repos = client.public_repos(license="apache-2.0")
-
 
         self.assertEqual(repos, self.apache2_repos)
 
