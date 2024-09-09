@@ -5,8 +5,8 @@ Task 0. Parameterize a unit test
 import unittest
 from unittest.mock import patch, Mock
 from parameterized import parameterized
-from utils import access_nested_map
-from utils import get_json
+from utils import get_json, memoize, access_nested_map
+
 
 class TestAccessNestedMap(unittest.TestCase):
     """Test cases for access_nested_map function."""
@@ -50,6 +50,34 @@ class TestGetJson(unittest.TestCase):
         result = get_json(test_url)
         mock_get.assert_called_once_with(test_url)
         self.assertEqual(result, test_payload)
+
+
+class TestMemoize(unittest.TestCase):
+    """Test cases for memoize"""
+
+    class TestClass:
+        """Test class for memoize"""
+        
+        def a_method(self):
+            return 42
+
+        @memoize
+        def a_property(self):
+            return self.a_method()
+
+    @patch.object(TestClass, 'a_method', return_value=42)
+    def test_memoize(self, mock_a_method):
+        """Test that a_method is only called once."""
+        test_instance = self.TestClass()
+
+        # Call a_property twice
+        result1 = test_instance.a_property
+        result2 = test_instance.a_property
+
+        # Assert the method is called only once
+        mock_a_method.assert_called_once()
+        self.assertEqual(result1, 42)
+        self.assertEqual(result2, 42)
 
 
 if __name__ == '__main__':
