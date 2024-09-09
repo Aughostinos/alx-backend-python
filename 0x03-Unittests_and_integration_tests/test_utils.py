@@ -5,7 +5,9 @@ Task 0. Parameterize a unit test
 import unittest
 from unittest.mock import patch, Mock
 from parameterized import parameterized
-from utils import get_json, memoize, access_nested_map
+from utils import get_json
+from utils import memoize
+from utils import access_nested_map
 
 
 class TestAccessNestedMap(unittest.TestCase):
