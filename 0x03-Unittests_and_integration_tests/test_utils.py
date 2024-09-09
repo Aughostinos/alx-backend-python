@@ -3,9 +3,10 @@
 Task 0. Parameterize a unit test
 """
 import unittest
+from unittest.mock import patch, Mock
 from parameterized import parameterized
 from utils import access_nested_map
-
+from utils import get_json
 
 class TestAccessNestedMap(unittest.TestCase):
     """Test cases for access_nested_map function."""
