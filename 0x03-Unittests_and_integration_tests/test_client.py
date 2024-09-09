@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-4. Parameterize and patch as decorators
+9. Integration tests
 """
 import unittest
 from unittest.mock import patch
@@ -87,8 +87,6 @@ class TestGithubOrgClient(unittest.TestCase):
         "apache2_repos": TEST_PAYLOAD[0][3]
     },
 ])
-
-
 class TestIntegrationGithubOrgClient(unittest.TestCase):
     """Integration tests for GithubOrgClient.public_repos."""
 
@@ -98,7 +96,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         cls.get_patcher = patch('requests.get')
         cls.mock_get = cls.get_patcher.start()
 
-        # Mocking the response with the org and repos payloads
+        # Mocking the response
         def get_json_side_effect(url):
             if url == "https://api.github.com/orgs/google":
                 return cls.org_payload
@@ -114,15 +112,19 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         cls.get_patcher.stop()
 
     def test_public_repos(self):
-        """Test public_repos method ."""
+        """Test public_repos method"""
         client = GithubOrgClient("google")
         repos = client.public_repos()
+
+        # Assert the returned repo names are as expected
         self.assertEqual(repos, self.expected_repos)
 
     def test_public_repos_with_license(self):
         """Test public_repos method"""
         client = GithubOrgClient("google")
         repos = client.public_repos(license="apache-2.0")
+
+
         self.assertEqual(repos, self.apache2_repos)
 
 
